@@ -65,12 +65,12 @@ app.post("/send", (req, res) => {
 
 // MongoDB connection
 const MONGO_ATLAS_PASSWORD = process.env.MONGO_ATLAS_PASSWORD;
-const MONGO_URI = `mongodb+srv://darshan:${MONGO_ATLAS_PASSWORD}@photo.chkhh1l.mongodb.net/`;
+const MONGO_URI = `mongodb+srv://darshan:${MONGO_ATLAS_PASSWORD}@photo.chkhh1l.mongodb.net/?tls=true`;
 const DB_NAME = process.env.DB_NAME || "photography";
 let db;
 
 // Connect to MongoDB
-MongoClient.connect(MONGO_URI)
+MongoClient.connect(MONGO_URI, { useUnifiedTopology: true })
     .then((client) => {
         db = client.db(DB_NAME);
         console.log("✅ Connected to MongoDB");
@@ -81,6 +81,9 @@ MongoClient.connect(MONGO_URI)
 
 // Endpoint to get all photo metadata (only _id, alt, title)
 app.get("/api/photos", async (req, res) => {
+    if (!db) {
+        return res.status(500).json({ error: "Database not connected" });
+    }
     // Returns an array of all photo documents with type "photo"
     // Only includes _id, alt, and title fields for each photo
     // Used by the frontend to list/display all photos
@@ -101,6 +104,9 @@ app.get("/api/photos", async (req, res) => {
 
 // Endpoint to get photo binary data by id
 app.get("/api/photo/:id", async (req, res) => {
+    if (!db) {
+        return res.status(500).send("Database not connected");
+    }
     // Returns the raw binary image data for a specific photo by its MongoDB _id
     // Sets the correct Content-Type (e.g., image/jpeg, image/webp)
     // Used as the src for <img> tags in the frontend
@@ -120,6 +126,9 @@ app.get("/api/photo/:id", async (req, res) => {
 
 // Endpoint to get all video metadata (only _id, title)
 app.get("/api/videos", async (req, res) => {
+    if (!db) {
+        return res.status(500).json({ error: "Database not connected" });
+    }
     // Returns an array of all video documents with type "video"
     // Only includes _id and title fields for each video
     // Used by the frontend to list/display all videos
@@ -140,6 +149,9 @@ app.get("/api/videos", async (req, res) => {
 
 // Endpoint to stream video binary data by id
 app.get("/api/video/:id", async (req, res) => {
+    if (!db) {
+        return res.status(500).send("Database not connected");
+    }
     // Returns the raw binary video data for a specific video by its MongoDB _id
     // Sets the correct Content-Type (e.g., video/mp4)
     // Used as the src for <video> tags in the frontend
@@ -159,7 +171,8 @@ app.get("/api/video/:id", async (req, res) => {
 
 // Start the server
 const PORT = process.env.PORT || 3001;
-app.listen(PORT, () =>
-    console.log(`🚀 Server running on http://localhost:${PORT}`)
+const HOST = process.env.HOST || "0.0.0.0";
+app.listen(PORT, HOST, () =>
+    console.log(`🚀 Server running on http://${HOST}:${PORT}`)
 );
 
