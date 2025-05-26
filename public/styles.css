@@ -1,0 +1,422 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+    scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+    overflow: auto;
+    min-height: 200vh;
+    background-image: url('background-whatsapp.png'); /* Use your provided image */
+    background-size: cover;
+    background-repeat: repeat;
+    background-position: center center;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    flex: 1;
+    background-color: beige;
+    background-size: 300% 300%;
+    animation: animatedGradient 10s ease infinite;
+    color: #ffffff;
+    line-height: 1.8; /* Improve readability */
+    font-size: 16px; /* Modern font size */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    height: 100vh; /* Ensure body is viewport height */
+    overflow-y: hidden;
+}
+
+/* Invisible hover trigger area */
+.nav-wrapper {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 50px; /* Small hover-sensitive area */
+    z-index: 1000;
+}
+
+/* Navbar (hidden by default) */
+.navbar {
+    position: fixed;
+    top: -100px; /* Initially hidden */
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Slightly transparent */
+    padding: 10px 0;
+    text-align: center;
+    transition: top 0.4s ease-in-out, background-color 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Modern shadow */
+}
+
+h2 {
+    margin-top: 50px;  
+}
+
+/* When hovering over nav-wrapper, show navbar */
+.nav-wrapper:hover .navbar {
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.9); /* Darker on hover */
+}
+
+.navbar h1 {
+    color: white;
+    font-size: 24px;
+    margin-bottom: 10px; /* Add spacing below the title */
+}
+
+nav ul {
+    list-style: none;
+    display: inline-block;
+    margin-left: 20px;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+    justify-content: space-between;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: beige;
+}
+
+
+
+footer {
+    text-align: center;
+    padding: 20px 10px;
+    background-color: rgba(0,0,0,0.6); /* Transparent black */
+    font-size: 14px;
+    color: #aaa;
+    width: 100%;
+    box-sizing: border-box;
+    border-top: 1px solid #444;
+    position: fixed;   /* Fix footer to bottom */
+    left: 0;
+    bottom: 0;
+    z-index: 2;
+    margin-top: 0;     /* Remove auto margin */
+}
+
+.about h2 {
+    margin-bottom: 40px;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.separator {
+    width: 100px;
+    height: 2px;
+    background-color: #ff5733;
+    margin: 0 auto 20px auto;
+}
+
+@keyframes animatedGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Particles background */
+#particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Place behind other content */
+     /* Restore gradient background */
+}
+
+.Aboutprof {
+    position: relative;
+    z-index: 2;
+}
+
+.about-me {
+    text-wrap: normal;
+    overflow-wrap: break-word;
+    background-color: white;
+    overflow-y: hidden;
+    border-radius: 15px; /* Softer corners */
+    color: black;
+    padding: 50px;
+    max-width: 800px;
+    margin:auto;
+    margin: top 50px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Modern shadow */
+    font-size: 18px; /* Increase font size for better readability */
+    line-height: 1.8; /* Improve line height for readability */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effects */
+    position: relative;
+    overflow: hidden; /* Hide overflow for animations */
+}
+
+.about-me:hover {
+    transform: translateY(-10px); /* Lift the card slightly */
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+}
+
+.about-me::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(120deg, rgba(255, 87, 51, 0.2), rgba(255, 141, 51, 0.2));
+    transform: skewX(-30deg);
+    transition: left 0.5s ease;
+    z-index: 0;
+}
+
+.about-me:hover::before {
+    left: 0; /* Slide the gradient overlay on hover */
+}
+
+.about-me h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color:#111;
+    position: relative;
+    z-index: 1; /* Ensure text is above the gradient */
+}
+
+.about-me p {
+    font-family: 'Arial', sans-serif;
+    font-size: 1rem;
+    color: #333; /* Softer text color */
+    position: relative;
+    z-index: 1; /* Ensure text is above the gradient */
+    font-style: italic;
+    font-weight: 500;
+}
+
+h1, h2 {
+    font-family: 'Poppins', sans-serif; /* Modern font */
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.bio-image {
+    border-radius: 500px;
+    margin-left: 50px;
+    margin-top: 50px;
+    opacity: 0.92; /* Slight transparency for blending */
+    
+
+    transition: 
+        transform 0.3s ease, 
+        box-shadow 0.3s ease, 
+        opacity 0.3s ease, 
+        border 0.3s ease;
+    pointer-events: auto; /* Ensure image can be hovered */
+}
+
+/* Flex wrapper for photo and glass cards */
+.profile-flex-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    margin-bottom: 120px; /* space above footer */
+    margin-top: 40px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Responsive: stack on small screens */
+@media (max-width: 900px) {
+    .profile-flex-row {
+        flex-direction: column;
+        gap: 30px;
+        margin-bottom: 80px;
+    }
+    .bio-image {
+        margin-left: 0;
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        font-size: 14px; /* Adjust font size for smaller screens */
+    }
+
+    nav ul li {
+        margin: 0 10px; /* Reduce spacing for smaller screens */
+    }
+
+    .about-me {
+        padding: 30px; /* Adjust padding for smaller screens */
+        font-size: 16px; /* Adjust font size for smaller screens */
+    }
+
+    .about-me h1 {
+        font-size: 1.5rem; /* Adjust heading size for smaller screens */
+    }
+}
+/* From Uiverse.io by codebykay101 */ 
+.container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin-bottom: 500px; */ /* Remove this line if present */
+}
+
+.container .glass {
+  position: relative;
+  width: 180px;
+  height: 200px;
+  background: linear-gradient(rgba(0, 0, 0, 0.13), transparent);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 25px 25px rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s;
+  border-radius: 10px;
+  margin: 0 -45px;
+  backdrop-filter: blur(10px);
+  transform: rotate(calc(var(--r) * 1deg));
+  margin-bottom: 50px;
+  transition: 0.5s;
+}
+
+.container:hover .glass {
+  transform: rotate(0deg);
+  margin: 0 10px;
+}
+
+.container .glass::before {
+  content: attr(data-text);
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  background: rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #000; /* Set data-text color to black */
+}
+.container .glass svg {
+  font-size: 2.5em;
+  fill: #000000;
+  margin-bottom: 5px;
+}
+
+.data-text {
+
+    color: #000000;
+    font-size: 1.2em;
+}
+
+.glass:hover {
+    
+    transform: scale(1.05);
+    cursor: pointer;
+    color: #000000;
+    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+}
+
+
+/* From Uiverse.io by boryanakrasteva */ 
+.btn {
+  width: 30px;
+  height: 50px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  outline: 2px solid black;
+  box-shadow: 0px 0px 10px black;
+  position: relative;
+}
+
+
+.scroll {
+  width: 5px;
+  height: 10px;
+  border-radius: 10px;
+  background-color: black;
+  box-shadow: 0px 0px 10px black;
+  animation: scroll_4013 2s linear infinite;
+  transform: translateY(40%);
+}
+
+.btn:after {
+  content: 'scroll';
+  position: absolute;
+  top: 140%;
+  color: whitesmoke;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+@keyframes scroll_4013 {
+  0% {
+    transform: translateY(40%);
+  }
+
+  50% {
+    transform: translateY(90%);
+  }
+}
+/* From Uiverse.io by chethan025 */ 
+.button {
+  width: 38px;
+  height: 82px;
+  padding: 2px;
+  border: 1px solid #474747;
+  border-radius: 50px;
+  background: rgba(141, 141, 141, 0.18);
+  transition: all 0.3s ease-in-out;
+  transform: rotate(180deg);
+  margin: 0 auto;
+  display: block;
+}
+
+
+.svg {
+  width: 22px;
+  height: 62px;
+  transform: rotate(180deg);
+}
+
+.button:hover {
+  transform: scale(-1.2);
+}
+
+.button:focus {
+  height: 0px;
+  width: 0px;
+  padding: 0px;
+  border: 0px;
+}
+
+.button:focus > .svg {
+  display: none;
+  height: 0px;
+}
+
+
+

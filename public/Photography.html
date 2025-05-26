@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Photography</title>
+        <link rel="stylesheet" href="ph.css" />
+        <!-- Favicon links -->
+        <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+        <link rel="manifest" href="favicon_io/site.webmanifest">
+         <style>
+        #particles-js {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: 0;
+        }
+        .about-center-wrapper {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .gallery-center-wrapper {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+    </head>
+
+    <body>
+        <div id="particles-js"> </div>
+        <div class="nav-wrapper">
+            <!-- Invisible hover area -->
+            <header class="navbar">
+                <nav>
+                    <ul>
+                        <li><a href="photography.html">Photography</a></li>
+                        <li><a href="index.html">About</a></li>
+                        <li><a href="Videography.html">Videography</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </header>
+        </div>
+        <div class="gallery-center-wrapper">
+            <section class="gallery">
+                <h2>Gallery</h2>
+                <div class="photo-grid" id="photoGrid">
+                    <!-- Photos will be rendered here -->
+                </div>
+                <div class="photo-modal" id="photoModal">
+                    <button class="close-modal" id="closeModalBtn" aria-label="Close">&times;</button>
+                    <img id="modalImg" src="" alt="">
+                </div>
+            </section>
+        </div>
+         <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="particles-config.js"></script>
+        <footer>
+            <p>© 2025 WRSC Photography. All rights reserved.</p>
+        </footer>
+        
+        <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+        <script src="particles-config.js"></script>
+        <script>
+fetch('/api/photos')
+  .then(res => res.json())
+  .then(photos => {
+    const grid = document.getElementById('photoGrid');
+    grid.innerHTML = '';
+    photos.forEach(photo => {
+      const card = document.createElement('div');
+      card.className = 'photo-card';
+      card.innerHTML = `
+        <img src="/api/photo/${photo._id}" alt="${photo.alt || ''}">
+        <div class="photo-name"></div>
+        <div class="photo-title">${photo.title || ''}</div>
+        <div class="photo-alt">${photo.alt || ''}</div>
+      `;
+      // Add click event to expand image
+      card.querySelector('img').addEventListener('click', function() {
+        const modal = document.getElementById('photoModal');
+        const modalImg = document.getElementById('modalImg');
+        modalImg.src = this.src;
+        modalImg.alt = this.alt;
+        modal.classList.add('active');
+      });
+      grid.appendChild(card);
+    });
+  })
+  .catch(err => {
+    document.getElementById('photoGrid').innerHTML = '<p style="color:red">Failed to load photos.</p>';
+    console.error('Failed to load photos:', err);
+  });
+
+// Modal close logic
+document.addEventListener('DOMContentLoaded', function() {
+  const modal = document.getElementById('photoModal');
+  const closeBtn = document.getElementById('closeModalBtn');
+  modal.addEventListener('click', function(e) {
+    if (e.target === modal || e.target === closeBtn) {
+      modal.classList.remove('active');
+      document.getElementById('modalImg').src = '';
+    }
+  });
+});
+        </script>
+    </body>
+</html>

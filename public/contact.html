@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <link rel="stylesheet" href="cont.css">
+    <!-- Favicon links -->
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="favicon_io/site.webmanifest">
+    <style>
+        /* Inline style for stacking and centering */
+        #particles-js {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: 0;
+        }
+        .contact-center-wrapper {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Particles container as background -->
+    <div id="particles-js"></div>
+   
+    <!-- Navigation -->
+    <div class="nav-wrapper">
+        <header class="navbar">
+            <nav>
+                <ul>
+                    <li><a href="photography.html">Photography</a></li>
+                    <li><a href="index.html">About</a></li>
+                    <li><a href="Videography.html">Videography</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+
+    <!-- Centered Contact Section -->
+    <div class="contact-center-wrapper">
+        <section id="contact">
+            <h2>Contact</h2>
+            <div class="separator"></div> <!-- Separator for visual hierarchy -->
+
+            <!-- Contact Form -->
+            <form id="contactForm" class="contact-form">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Message" required></textarea>
+                <button type="submit">Send</button>
+            </form>
+
+            <!-- Success and Error Messages -->
+            <p id="successMessage" style="display:none; color: green;">Message Sent Successfully!</p>
+            <p id="errorMessage" style="display:none; color: red;">Failed to send the message. Please try again.</p>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 WRSC Photography. All rights reserved.</p>
+    </footer>
+   
+    <!-- Scripts -->
+    <script>
+        document.getElementById("contactForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const formData = {
+                name: form.name.value,
+                email: form.email.value,
+                message: form.message.value,
+            };
+
+            try {
+                const response = await fetch("/send", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(formData),
+                });
+
+                if (response.ok) {
+                    document.getElementById("successMessage").style.display = "block";
+                    document.getElementById("errorMessage").style.display = "none";
+                    form.reset();
+                } else {
+                    throw new Error("Failed to send message");
+                }
+            } catch (error) {
+                document.getElementById("successMessage").style.display = "none";
+                document.getElementById("errorMessage").style.display = "block";
+                console.error("Error:", error);
+            }
+        });
+    </script>
+ <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+ <script src="particles-config.js"></script>
+
+
+</body>
+</html>

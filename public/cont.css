@@ -1,0 +1,186 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    /* overflow-y: hidden; */ /* Remove this line */
+}
+
+body {
+    flex: 1;
+    background-color: beige; /* Set solid beige background */
+    color: #ffffff;
+    line-height: 1.6; /* Improve readability */
+    overflow: hidden; /* Prevent scrolling */
+    height: 100vh;    /* Ensure body is viewport height */
+    padding-bottom: 60px; /* Add space for the fixed footer */
+    background-image: url('background-whatsapp.png');
+    background-size: cover;
+    background-repeat: repeat;
+    background-position: center center;
+}
+
+/* Invisible hover trigger area */
+.nav-wrapper {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 50px; /* Small hover-sensitive area */
+    z-index: 1000;
+}
+
+/* Navbar (hidden by default) */
+.navbar {
+    position: fixed;
+    top: -100px; /* Initially hidden */
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 15px 0; /* Reduce padding for better spacing */
+    text-align: center;
+    transition: top 0.4s ease-in-out;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Add subtle shadow */
+}
+
+h2 {
+    margin-top: 50px; 
+    color:#000 ;
+    margin-bottom: 20px; /* Add spacing below the title */
+}
+
+/* When hovering over nav-wrapper, show navbar */
+.nav-wrapper:hover .navbar {
+    top: 0;
+}
+
+.navbar h1 {
+    color: white;
+    font-size: 24px;
+    margin-bottom: 10px; /* Add spacing below the title */
+}
+
+nav ul {
+    list-style: none;
+    display: inline-block;
+    margin-left: 20px;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+    justify-content: space-between;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: beige;
+}
+
+#hero {
+    text-align: center;
+    padding: 100px 20px;
+    background: url('hero.jpg') no-repeat center center/cover;
+}
+
+#about, #contact {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: 20px auto;
+    margin:auto;
+}
+
+form input, form textarea, form button {
+    margin-top: 10px;
+    padding: 12px; /* Increase padding for better usability */
+    border: none;
+    border-radius: 5px;
+    font-size: 16px; /* Improve text size */
+}
+
+form button {
+    background: beige; /* Highlight button */
+    color: rgb(1, 1, 1);
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+form button:hover {
+    background: rgb(209, 209, 175); 
+    /* Slightly darker hover effect */
+}
+
+footer {
+    text-align: center;
+    padding: 20px 10px;
+    background-color: rgba(0,0,0,0.6); /* Transparent black */
+    font-size: 14px;
+    color: #ccc;
+    width: 100%;
+    box-sizing: border-box;
+    position: fixed;   /* Fix footer to bottom */
+    left: 0;
+    bottom: 0;
+    z-index: 10;
+    border-top: 1px solid #444;
+}
+
+.contact-form {
+    /* margin-top: 50px; */ /* Remove this line for perfect centering */
+    background-color: #000;
+    border-radius: 10px;
+    padding: 45px;
+    box-shadow: 5px 5px 15px rgba(58, 58, 58, 0.3);
+    transition: 1s;
+    background-color: #000;
+}
+
+.contact-form:hover {
+    box-shadow: 5px 5px 15px rgba(63, 63, 63, 0.6);
+    transform: scale(1.01);
+}
+h2 {
+    display: inline-block;
+    font-size: 2rem;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+h2::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px; /* Adjust the distance of the underline */
+    width: 100%;
+    height: 3px; /* Thickness of the underline */
+    background-color: #000000; /* Underline color */
+    transform: scaleX(0); /* Start hidden */
+    transform-origin: center;
+    transition: transform 0.3s ease-out;
+}
+
+h2:hover::after {
+    transform: scaleX(1); /* Expand the underline */
+}
+
+#particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+   /* Restore gradient background */
+}
+

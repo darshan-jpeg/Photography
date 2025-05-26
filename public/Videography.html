@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Videography</title>
+    <link rel="stylesheet" href="vd.css">
+    <!-- Favicon links -->
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="favicon_io/site.webmanifest">
+</head>
+<body>
+    <div class="nav-wrapper">
+            <!-- Invisible hover area -->
+            <header class="navbar">
+                <nav>
+                    <ul>
+                        <li><a href="photography.html">Photography</a></li>
+                        <li><a href="index.html">About</a></li>
+                        <li><a href="Videography.html">Videography</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </header>
+        </div>
+
+        <section id="videography">
+            <h2>Videography</h2>
+            <div class="separator"></div>
+            <div class="video-grid" id="videoGrid">
+                <!-- Videos will be rendered here -->
+            </div>
+            <div id="particles-js"></div>
+            <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+            <script src="particles-config.js"></script>
+            <script>
+                // Fetch videos from backend and render them
+                fetch('/api/videos')
+                    .then(res => res.json())
+                    .then(videos => {
+                        const grid = document.getElementById('videoGrid');
+                        grid.innerHTML = '';
+                        videos.forEach(video => {
+                            const div = document.createElement('div');
+                            div.innerHTML = `
+                                <video controls src="/api/video/${video._id}"></video>
+                                <div class="video-name"></div>
+                                <div class="video-title">${video.title || ''}</div>
+                            `;
+                            grid.appendChild(div);
+                        });
+                    })
+                    .catch(err => {
+                        document.getElementById('videoGrid').innerHTML = '<p style="color:red">Failed to load videos.</p>';
+                        console.error('Failed to load videos:', err);
+                    });
+            </script>
+        </section>
+    </div>
+    <footer>
+        <p>© 2025 WRSC Photography. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+

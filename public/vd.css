@@ -1,0 +1,185 @@
+html, body {
+    height: 100vh; /* Ensure viewport height */
+    margin: 0;
+    /* Remove display: flex and flex-direction */
+    font-family: Arial, sans-serif;
+    scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: beige;
+    background-image: url('background-whatsapp.png');
+    background-size: cover;
+    background-repeat: repeat;
+    background-position: center center;
+    color: #ffffff;
+    line-height: 1.6; /* Improve readability */
+    padding-bottom: 60px; /* Space for the fixed footer */
+}
+
+/* Invisible hover trigger area */
+.nav-wrapper {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 50px; /* Small hover-sensitive area */
+    z-index: 1000;
+}
+
+h2 {
+    margin-top: 50px;
+    color: #000;
+    margin-bottom: 40px;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 2rem;
+    display: inline-block;
+    position: relative;
+    transition: color 0.3s ease;
+    margin-left: 100px; /* Add padding for better spacing */
+}
+
+h2::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 100%;
+    height: 3px;
+    background-color: #000000; /* Underline color */
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease-out;
+   
+}
+
+h2:hover::after {
+    transform: scaleX(1);
+}
+/* Navbar (hidden by default) */
+.navbar {
+    position: fixed;
+    top: -100px; /* Initially hidden */
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 15px 0; /* Reduce padding for better spacing */
+    text-align: center;
+    transition: top 0.4s ease-in-out;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Add subtle shadow */
+}
+
+h2 {
+    margin-top: 50px;  
+}
+
+/* When hovering over nav-wrapper, show navbar */
+.nav-wrapper:hover .navbar {
+    top: 0;
+}
+
+.navbar h1 {
+    color: white;
+    font-size: 24px;
+    margin-bottom: 10px; /* Add spacing below the title */
+}
+
+nav ul {
+    list-style: none;
+    display: inline-block;
+    margin-left: 20px;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+    justify-content: space-between;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: beige;
+}
+
+#particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+     /* Restore gradient background */
+}
+
+
+
+footer {
+    text-align: center;
+    padding: 20px 10px; /* Consistent padding */
+    background-color: rgba(0,0,0,0.6); /* Transparent black */
+    font-size: 14px; /* Adjust font size for better readability */
+    color: #ccc; /* Subtle text color */
+    width: 100%; /* Ensure full width */
+    box-sizing: border-box; /* Prevent overflow issues */
+    position: fixed;   /* Fix footer to bottom */
+    left: 0;
+    bottom: 0;
+    z-index: 10;
+    border-top: 1px solid #444;
+}
+
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* Match photo grid size */
+    gap: 16px; /* Reduced gap */
+    padding: 40px 20px 100px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.video-grid video {
+    width: 100%;
+    max-width: 320px; /* Match photo grid max width */
+    aspect-ratio: 16 / 9;
+    border-radius: 10px;
+    background: #eee;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    margin-bottom: 8px;
+    display: block;
+}
+
+.video-grid .video-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #222;
+    margin-bottom: 4px;
+    text-align: left;
+    padding-left: 2px;
+}
+
+.video-grid .video-name {
+    font-size: 1rem;
+    color: #007199;
+    font-weight: 500;
+    margin-bottom: 6px;
+    text-align: left;
+    padding-left: 2px;
+    letter-spacing: 0.5px;
+}
+
+
+
+
