@@ -70,7 +70,7 @@ const DB_NAME = process.env.DB_NAME || "photography";
 let db;
 
 // Connect to MongoDB
-MongoClient.connect(MONGO_URI, { useUnifiedTopology: true })
+MongoClient.connect(MONGO_URI)
     .then((client) => {
         db = client.db(DB_NAME);
         console.log("✅ Connected to MongoDB");
